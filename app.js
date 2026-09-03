@@ -14,20 +14,40 @@ function normalizeData(raw){
   const categories=[...new Set((raw.categories||[]).concat(menu.map(m=>m.category)).filter(Boolean))];
   return {customers:(raw.customers||[]).map(c=>({...c,points:Number(c.points)||0})),menu,categories};
 }
-function loadLiveData(){
+function loadLiveData() {
   setStatus("Memuat...");
-  const cb="rrCallback_"+Date.now();
-  window[cb]=payload=>{try{DATA=normalizeData(payload);renderApp();setStatus("Live");}catch(e){fallbackToStatic("Format data live tidak sesuai.");}finally{delete window[cb];document.getElementById(cb)?.remove();}};
-  const s=document.createElement("script");s.id=cb;s.src=API_URL+(API_URL.includes("?")?"&":"?")+"callback="+cb;
-  s.onerror=()=>{fallbackToStatic("Data live gagal dimuat. Menampilkan data terakhir.");delete window[cb];s.remove();};
-  document.body.appendChild(s);
+  
+  // Menggunakan Fetch API yang lebih modern
+  fetch(API_URL)
+    .then(response => {
+      // Memastikan Apps Script mengembalikan status 200 OK
+      if (!response.ok) throw new Error("Gagal terhubung ke server.");
+      return response.text();
+    })
+    .then(text => {
+      try {
+        // Coba jadikan JSON
+        const payload = JSON.parse(text);
+        DATA = normalizeData(payload);
+        renderApp();
+        setStatus("Live");
+      } catch (e) {
+        // Jika gagal di-parse, berarti Apps Script mengirim pesan error (bukan data)
+        console.error("Response dari Apps Script:", text);
+        throw new Error("Data dari server tidak berformat JSON.");
+      }
+    })
+    .catch(error => {
+      console.error(error);
+      fallbackToStatic("Gagal: " + error.message);
+    });
 }
-function fallbackToStatic(msg){DATA=normalizeData(STATIC_DATA);renderApp();setStatus("Demo");showToast(msg);}
-function setStatus(t){document.getElementById("status-label").textContent=t;}
-function renderApp(){
-  document.getElementById("customer-count").textContent=DATA.customers.length;
-  document.getElementById("menu-count").textContent=DATA.menu.length;
-  renderTop3();populateCustomers();populateFilters();renderMenu();bindEvents();
+
+function fallbackToStatic(msg) {
+  DATA = normalizeData(STATIC_DATA);
+  renderApp();
+  setStatus("Demo");
+  showToast(msg); // Ini akan memunculkan popup hitam berisi pesan error aslinya
 }
 function renderTop3(){
   const top=[...DATA.customers].sort((a,b)=>b.points-a.points).slice(0,3), medals=["🥇","🥈","🥉"], widths=[100,86,76];
