@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#2b1710">
+<title>Racikan Rindu — Point Pelanggan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="grain"></div>
+<header class="site-header"><div class="container nav">
+<a class="brand" href="#"><span class="brand-mark">☕</span><span><strong>Racikan Rindu</strong><small>Point &amp; Reward</small></span></a>
+<nav><a href="#cek-poin">Cek Poin</a><a href="#reward">Reward</a><a class="nav-cta" href="#tukarkan">Tukarkan</a></nav>
+</div></header>
+
+<main>
+<section class="hero"><div class="container hero-grid">
+<div class="hero-copy"><div class="eyebrow"><span></span> RACIKAN RINDU</div>
+<h1>Setiap tegukan punya cerita,<br><em>setiap poin punya rasa.</em></h1>
+<p>Masukkan namamu, pilih kategori minuman, lalu temukan reward yang bisa kamu tukarkan hari ini.</p>
+<div class="hero-actions"><a class="btn btn-primary" href="#cek-poin">Cek Poin Saya <span>↓</span></a><a class="text-link" href="#top-customer">Lihat Top 3 →</a></div>
+<div class="mini-stats"><div><b id="customer-count">—</b><span>Pelanggan</span></div><div><b id="menu-count">—</b><span>Pilihan reward</span></div><div><b id="status-label">Online</b><span>Status data</span></div></div>
+</div>
+<div class="hero-art" aria-hidden="true">
+<div class="steam steam-1"></div><div class="steam steam-2"></div><div class="steam steam-3"></div><div class="cup-shadow"></div>
+<div class="coffee-cup"><div class="cup-lid"></div><div class="cup-body"><span>RR</span></div><div class="cup-sleeve">RACIKAN<br>RINDU</div><div class="cup-handle"></div></div>
+<div class="bean bean-a"></div><div class="bean bean-b"></div><div class="bean bean-c"></div>
+</div></div></section>
+
+<section class="section" id="top-customer"><div class="container">
+<div class="section-heading"><div><span class="eyebrow">THE RINDU CLUB</span><h2>Top 3 pelanggan</h2></div><span class="live-pill"><i></i> Data dinamis</span></div>
+<div class="leaderboard" id="leaderboard"></div>
+</div></section>
+
+<section class="section checker" id="cek-poin"><div class="container"><div class="checker-card">
+<div class="checker-intro"><span class="eyebrow">POINT CHECKER</span><h2>Berapa poinmu<br>sekarang?</h2>
+<p>Cari namamu dan pilih kategori minuman. Sistem akan menampilkan reward yang sesuai dengan saldo poinmu.</p></div>
+<div class="checker-form">
+<label for="customer-search">Nama pelanggan</label>
+<div class="search-wrap"><span>⌕</span><input id="customer-search" list="customer-list" autocomplete="off" placeholder="Contoh: Dafi"><datalist id="customer-list"></datalist></div>
+<label for="category-filter" class="field-label">Kategori minuman</label>
+<select class="select-control" id="category-filter"><option value="">Semua kategori</option></select>
+<button class="btn btn-primary wide" id="check-btn">Cek Poin &amp; Rekomendasi <span>→</span></button>
+<div class="form-note">Kategori membantu kamu menemukan menu favorit dengan lebih cepat.</div>
+</div>
+</div></div></section>
+
+<section class="section result-section hidden" id="result-section"><div class="container">
+<div class="result-head"><div><span class="eyebrow">HASIL PENCARIAN</span><h2>Rekomendasi untukmu</h2></div><button class="ghost-btn" id="clear-btn">× Bersihkan</button></div>
+<div class="balance-card"><div class="avatar" id="result-avatar">D</div><div><span>Poin milik</span><strong id="result-name">—</strong></div><div class="balance-points"><strong id="result-points">0</strong><span>POINT</span></div></div>
+<div class="recommend-toolbar"><div><span class="eyebrow">FILTER REWARD</span><h3>Menu yang cocok dengan poinmu</h3></div>
+<select class="select-control small" id="result-category"><option value="">Semua kategori</option></select></div>
+<div class="reward-grid" id="affordable-grid"></div>
+<div class="empty-state hidden" id="affordable-empty">Belum ada menu dalam kategori ini yang bisa ditukarkan dengan poinmu.</div>
+</div></section>
+
+<section class="section" id="reward"><div class="container">
+<div class="section-heading"><div><span class="eyebrow">REWARD MENU</span><h2>Semua pilihan rasa</h2></div>
+<div class="menu-tools"><div class="search-wrap compact"><span>⌕</span><input id="menu-search" placeholder="Cari menu..."></div>
+<select class="select-control small" id="size-filter"><option value="">Semua ukuran</option></select>
+<select class="select-control small" id="all-category"><option value="">Semua kategori</option></select></div></div>
+<div class="reward-grid" id="menu-grid"></div><div class="empty-state hidden" id="menu-empty">Menu yang kamu cari belum ditemukan.</div>
+</div></section>
+
+<section class="section cta-section" id="tukarkan"><div class="container"><div class="cta-card">
+<div class="cta-beans">☕︎ &nbsp; ✦ &nbsp; ☕︎</div><span class="eyebrow">READY TO REDEEM?</span>
+<h2>Sudah menemukan menu<br>yang ingin kamu tukarkan?</h2><p>Hubungi kami sekarang untuk melakukan penukaran poin.</p>
+<a id="wa-btn" class="btn btn-light" href="#" target="_blank" rel="noopener">💬 Tukarkan Point via WhatsApp</a>
+<div class="phone">0838 9574 2866</div><small id="wa-hint">Pilih menu dari rekomendasi di atas sebelum menghubungi kami.</small>
+</div></div></section>
+</main>
+
+<footer><div class="container footer-inner"><div class="brand footer-brand"><span class="brand-mark">☕</span><span><strong>Racikan Rindu</strong><small>Made with coffee &amp; memories.</small></span></div><span>© <span id="year"></span> Racikan Rindu</span></div></footer>
+<div class="toast" id="toast"></div>
+<script src="app.js"></script>
+</body></html>
