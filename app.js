@@ -1,5 +1,7 @@
 const LIVE_MODE = true;
 const API_URL = "https://script.google.com/macros/s/AKfycbzKxhdFk2Bd3ZXgNAI4WH2lKDX5-8mL84BwzrIjK7gKznKAFCKeuUJGuUvq7AybBAdY/exec";
+
+// Data cadangan jika Google Sheet gagal dimuat
 const STATIC_DATA = {"customers": [{"no": 1, "name": "Dafi", "points": 282}, {"no": 2, "name": "Ilham", "points": 56}, {"no": 3, "name": "Jihan", "points": 56}, {"no": 4, "name": "Farhan", "points": 254}, {"no": 5, "name": "Bang Irfan", "points": 100}, {"no": 6, "name": "Mama Iyan", "points": 38}, {"no": 7, "name": "Raisya", "points": 78}, {"no": 8, "name": "Asa", "points": 110}, {"no": 9, "name": "Tuti Seblak", "points": 99}, {"no": 10, "name": "Teguh", "points": 29}, {"no": 11, "name": "Nurul", "points": 333}, {"no": 12, "name": "Husnul", "points": 150}, {"no": 13, "name": "Zahra", "points": 140}, {"no": 14, "name": "Rio Tebe", "points": 19}, {"no": 15, "name": "Novi Satut", "points": 97}, {"no": 16, "name": "Mba Yeni", "points": 28}, {"no": 17, "name": "Om Mamat", "points": 18}, {"no": 18, "name": "Abud", "points": 13}, {"no": 19, "name": "Lutfan", "points": 16}, {"no": 20, "name": "Nisa", "points": 34}], "menu": [{"no": 1, "name": "Butterscotch Sea Salt Latte", "category": "Sea Salt Latte Series", "size": "Small Cup", "points": 203}, {"no": 2, "name": "Butterscotch Sea Salt Latte", "category": "Sea Salt Latte Series", "size": "Large Cup", "points": 282}, {"no": 3, "name": "Butterscotch Sea Salt Latte", "category": "Sea Salt Latte Series", "size": "Small Bottle", "points": 287}, {"no": 4, "name": "Butterscotch Sea Salt Latte", "category": "Sea Salt Latte Series", "size": "Large Bottle", "points": 575}, {"no": 5, "name": "Butterscotch Sea Salt Latte", "category": "Sea Salt Latte Series", "size": "Extra Large Bottle", "points": 1133}, {"no": 6, "name": "Pistachio Sea Salt Latte", "category": "Sea Salt Latte Series", "size": "Small Cup", "points": 203}, {"no": 7, "name": "Pistachio Sea Salt Latte", "category": "Sea Salt Latte Series", "size": "Large Cup", "points": 282}, {"no": 8, "name": "Pistachio Sea Salt Latte", "category": "Sea Salt Latte Series", "size": "Small Bottle", "points": 287}, {"no": 9, "name": "Pistachio Sea Salt Latte", "category": "Sea Salt Latte Series", "size": "Large Bottle", "points": 575}, {"no": 10, "name": "Pistachio Sea Salt Latte", "category": "Sea Salt Latte Series", "size": "Extra Large Bottle", "points": 1133}, {"no": 11, "name": "Caramel Machiato Sea Salt Latte", "category": "Sea Salt Latte Series", "size": "Small Cup", "points": 201}, {"no": 12, "name": "Caramel Machiato Sea Salt Latte", "category": "Sea Salt Latte Series", "size": "Large Cup", "points": 280}, {"no": 13, "name": "Caramel Machiato Sea Salt Latte", "category": "Sea Salt Latte Series", "size": "Small Bottle", "points": 284}, {"no": 14, "name": "Caramel Machiato Sea Salt Latte", "category": "Sea Salt Latte Series", "size": "Large Bottle", "points": 570}, {"no": 15, "name": "Caramel Machiato Sea Salt Latte", "category": "Sea Salt Latte Series", "size": "Extra Large Bottle", "points": 1125}, {"no": 16, "name": "Hazelnut Sea Salt Latte", "category": "Sea Salt Latte Series", "size": "Small Cup", "points": 196}, {"no": 17, "name": "Hazelnut Sea Salt Latte", "category": "Sea Salt Latte Series", "size": "Large Cup", "points": 275}, {"no": 18, "name": "Hazelnut Sea Salt Latte", "category": "Sea Salt Latte Series", "size": "Small Bottle", "points": 279}, {"no": 19, "name": "Hazelnut Sea Salt Latte", "category": "Sea Salt Latte Series", "size": "Large Bottle", "points": 561}, {"no": 20, "name": "Hazelnut Sea Salt Latte", "category": "Sea Salt Latte Series", "size": "Extra Large Bottle", "points": 1105}, {"no": 21, "name": "Vanilla Sea Salt Latte", "category": "Sea Salt Latte Series", "size": "Small Cup", "points": 195}, {"no": 22, "name": "Vanilla Sea Salt Latte", "category": "Sea Salt Latte Series", "size": "Large Cup", "points": 280}, {"no": 23, "name": "Vanilla Sea Salt Latte", "category": "Sea Salt Latte Series", "size": "Small Bottle", "points": 285}, {"no": 24, "name": "Vanilla Sea Salt Latte", "category": "Sea Salt Latte Series", "size": "Large Bottle", "points": 571}, {"no": 25, "name": "Vanilla Sea Salt Latte", "category": "Sea Salt Latte Series", "size": "Extra Large Bottle", "points": 1126}, {"no": 26, "name": "Creamy Palm Coffee", "category": "Latte Series", "size": "Small Cup", "points": 132}, {"no": 27, "name": "Creamy Palm Coffee", "category": "Latte Series", "size": "Large Cup", "points": 188}, {"no": 28, "name": "Creamy Palm Coffee", "category": "Latte Series", "size": "Small Bottle", "points": 193}, {"no": 29, "name": "Creamy Palm Coffee", "category": "Latte Series", "size": "Large Bottle", "points": 388}, {"no": 30, "name": "Creamy Palm Coffee", "category": "Latte Series", "size": "Extra Large Bottle", "points": 760}, {"no": 31, "name": "Brown Sugar Coffee", "category": "Latte Series", "size": "Small Cup", "points": 135}, {"no": 32, "name": "Brown Sugar Coffee", "category": "Latte Series", "size": "Large Cup", "points": 193}, {"no": 33, "name": "Brown Sugar Coffee", "category": "Latte Series", "size": "Small Bottle", "points": 198}, {"no": 34, "name": "Brown Sugar Coffee", "category": "Latte Series", "size": "Large Bottle", "points": 398}, {"no": 35, "name": "Brown Sugar Coffee", "category": "Latte Series", "size": "Extra Large Bottle", "points": 780}, {"no": 36, "name": "Butterscotch Latte", "category": "Latte Series", "size": "Small Cup", "points": 183}, {"no": 37, "name": "Butterscotch Latte", "category": "Latte Series", "size": "Large Cup", "points": 250}, {"no": 38, "name": "Butterscotch Latte", "category": "Latte Series", "size": "Small Bottle", "points": 255}, {"no": 39, "name": "Butterscotch Latte", "category": "Latte Series", "size": "Large Bottle", "points": 511}, {"no": 40, "name": "Butterscotch Latte", "category": "Latte Series", "size": "Extra Large Bottle", "points": 1007}, {"no": 41, "name": "Vanilla Latte", "category": "Latte Series", "size": "Small Cup", "points": 172}, {"no": 42, "name": "Vanilla Latte", "category": "Latte Series", "size": "Large Cup", "points": 248}, {"no": 43, "name": "Vanilla Latte", "category": "Latte Series", "size": "Small Bottle", "points": 253}, {"no": 44, "name": "Vanilla Latte", "category": "Latte Series", "size": "Large Bottle", "points": 508}, {"no": 45, "name": "Vanilla Latte", "category": "Latte Series", "size": "Extra Large Bottle", "points": 999}, {"no": 46, "name": "Amerikano", "category": "Latte Series", "size": "Small Cup", "points": 59}, {"no": 47, "name": "Amerikano", "category": "Latte Series", "size": "Large Cup", "points": 100}, {"no": 48, "name": "Amerikano", "category": "Latte Series", "size": "Small Bottle", "points": 83}, {"no": 49, "name": "Amerikano", "category": "Latte Series", "size": "Large Bottle", "points": 168}, {"no": 50, "name": "Amerikano", "category": "Latte Series", "size": "Extra Large Bottle", "points": 320}, {"no": 51, "name": "Pistachio Latte", "category": "Latte Series", "size": "Small Cup", "points": 183}, {"no": 52, "name": "Pistachio Latte", "category": "Latte Series", "size": "Large Cup", "points": 250}, {"no": 53, "name": "Pistachio Latte", "category": "Latte Series", "size": "Small Bottle", "points": 255}, {"no": 54, "name": "Pistachio Latte", "category": "Latte Series", "size": "Large Bottle", "points": 511}, {"no": 55, "name": "Pistachio Latte", "category": "Latte Series", "size": "Extra Large Bottle", "points": 1007}, {"no": 56, "name": "Hazelnut Latte", "category": "Latte Series", "size": "Small Cup", "points": 173}, {"no": 57, "name": "Hazelnut Latte", "category": "Latte Series", "size": "Large Cup", "points": 251}, {"no": 58, "name": "Hazelnut Latte", "category": "Latte Series", "size": "Small Bottle", "points": 255}, {"no": 59, "name": "Hazelnut Latte", "category": "Latte Series", "size": "Large Bottle", "points": 512}, {"no": 60, "name": "Hazelnut Latte", "category": "Latte Series", "size": "Extra Large Bottle", "points": 1009}, {"no": 61, "name": "Cappucino", "category": "Latte Series", "size": "Small Cup", "points": 135}, {"no": 62, "name": "Cappucino", "category": "Latte Series", "size": "Large Cup", "points": 197}, {"no": 63, "name": "Cappucino", "category": "Latte Series", "size": "Small Bottle", "points": 201}, {"no": 64, "name": "Cappucino", "category": "Latte Series", "size": "Large Bottle", "points": 405}, {"no": 65, "name": "Cappucino", "category": "Latte Series", "size": "Extra Large Bottle", "points": 793}, {"no": 66, "name": "Caramel Machiato Latte", "category": "Latte Series", "size": "Small Cup", "points": 182}, {"no": 67, "name": "Caramel Machiato Latte", "category": "Latte Series", "size": "Large Cup", "points": 253}, {"no": 68, "name": "Caramel Machiato Latte", "category": "Latte Series", "size": "Small Bottle", "points": 257}, {"no": 69, "name": "Caramel Machiato Latte", "category": "Latte Series", "size": "Large Bottle", "points": 516}, {"no": 70, "name": "Caramel Machiato Latte", "category": "Latte Series", "size": "Extra Large Bottle", "points": 1017}, {"no": 71, "name": "Matcha Double Cheese", "category": "Double Cheese Series", "size": "Small Cup", "points": 139}, {"no": 72, "name": "Matcha Double Cheese", "category": "Double Cheese Series", "size": "Large Cup", "points": 213}, {"no": 73, "name": "Matcha Double Cheese", "category": "Double Cheese Series", "size": "Small Bottle", "points": 158}, {"no": 74, "name": "Matcha Double Cheese", "category": "Double Cheese Series", "size": "Large Bottle", "points": 317}, {"no": 75, "name": "Matcha Double Cheese", "category": "Double Cheese Series", "size": "Extra Large Bottle", "points": 618}, {"no": 76, "name": "Taro Double Cheese", "category": "Double Cheese Series", "size": "Small Cup", "points": 139}, {"no": 77, "name": "Taro Double Cheese", "category": "Double Cheese Series", "size": "Large Cup", "points": 214}, {"no": 78, "name": "Taro Double Cheese", "category": "Double Cheese Series", "size": "Small Bottle", "points": 158}, {"no": 79, "name": "Taro Double Cheese", "category": "Double Cheese Series", "size": "Large Bottle", "points": 318}, {"no": 80, "name": "Taro Double Cheese", "category": "Double Cheese Series", "size": "Extra Large Bottle", "points": 620}, {"no": 81, "name": "Red Velvet Double Cheese", "category": "Double Cheese Series", "size": "Small Cup", "points": 142}, {"no": 82, "name": "Red Velvet Double Cheese", "category": "Double Cheese Series", "size": "Large Cup", "points": 219}, {"no": 83, "name": "Red Velvet Double Cheese", "category": "Double Cheese Series", "size": "Small Bottle", "points": 162}, {"no": 84, "name": "Red Velvet Double Cheese", "category": "Double Cheese Series", "size": "Large Bottle", "points": 325}, {"no": 85, "name": "Red Velvet Double Cheese", "category": "Double Cheese Series", "size": "Extra Large Bottle", "points": 634}, {"no": 86, "name": "Cookies & Cream Double Cheese", "category": "Double Cheese Series", "size": "Small Cup", "points": 139}, {"no": 87, "name": "Cookies & Cream Double Cheese", "category": "Double Cheese Series", "size": "Large Cup", "points": 214}, {"no": 88, "name": "Cookies & Cream Double Cheese", "category": "Double Cheese Series", "size": "Small Bottle", "points": 158}, {"no": 89, "name": "Cookies & Cream Double Cheese", "category": "Double Cheese Series", "size": "Large Bottle", "points": 318}, {"no": 90, "name": "Cookies & Cream Double Cheese", "category": "Double Cheese Series", "size": "Extra Large Bottle", "points": 620}, {"no": 91, "name": "Choco Double Cheese", "category": "Double Cheese Series", "size": "Small Cup", "points": 155}, {"no": 92, "name": "Choco Double Cheese", "category": "Double Cheese Series", "size": "Large Cup", "points": 242}, {"no": 93, "name": "Choco Double Cheese", "category": "Double Cheese Series", "size": "Small Bottle", "points": 179}, {"no": 94, "name": "Choco Double Cheese", "category": "Double Cheese Series", "size": "Large Bottle", "points": 359}, {"no": 95, "name": "Choco Double Cheese", "category": "Double Cheese Series", "size": "Extra Large Bottle", "points": 702}, {"no": 96, "name": "Matcha Cheese", "category": "Cheese Series", "size": "Small Cup", "points": 110}, {"no": 97, "name": "Matcha Cheese", "category": "Cheese Series", "size": "Large Cup", "points": 165}, {"no": 98, "name": "Matcha Cheese", "category": "Cheese Series", "size": "Small Bottle", "points": 170}, {"no": 99, "name": "Matcha Cheese", "category": "Cheese Series", "size": "Large Bottle", "points": 341}, {"no": 100, "name": "Matcha Cheese", "category": "Cheese Series", "size": "Extra Large Bottle", "points": 666}, {"no": 101, "name": "Taro Cheese", "category": "Cheese Series", "size": "Small Cup", "points": 110}, {"no": 102, "name": "Taro Cheese", "category": "Cheese Series", "size": "Large Cup", "points": 166}, {"no": 103, "name": "Taro Cheese", "category": "Cheese Series", "size": "Small Bottle", "points": 170}, {"no": 104, "name": "Taro Cheese", "category": "Cheese Series", "size": "Large Bottle", "points": 342}, {"no": 105, "name": "Taro Cheese", "category": "Cheese Series", "size": "Extra Large Bottle", "points": 669}, {"no": 106, "name": "Red Velvet Cheese", "category": "Cheese Series", "size": "Small Cup", "points": 113}, {"no": 107, "name": "Red Velvet Cheese", "category": "Cheese Series", "size": "Large Cup", "points": 171}, {"no": 108, "name": "Red Velvet Cheese", "category": "Cheese Series", "size": "Small Bottle", "points": 175}, {"no": 109, "name": "Red Velvet Cheese", "category": "Cheese Series", "size": "Large Bottle", "points": 352}, {"no": 110, "name": "Red Velvet Cheese", "category": "Cheese Series", "size": "Extra Large Bottle", "points": 688}, {"no": 111, "name": "Cookies & Cream Cheese", "category": "Cheese Series", "size": "Small Cup", "points": 110}, {"no": 112, "name": "Cookies & Cream Cheese", "category": "Cheese Series", "size": "Large Cup", "points": 166}, {"no": 113, "name": "Cookies & Cream Cheese", "category": "Cheese Series", "size": "Small Bottle", "points": 170}, {"no": 114, "name": "Cookies & Cream Cheese", "category": "Cheese Series", "size": "Large Bottle", "points": 342}, {"no": 115, "name": "Cookies & Cream Cheese", "category": "Cheese Series", "size": "Extra Large Bottle", "points": 669}, {"no": 116, "name": "Choco Cheese", "category": "Cheese Series", "size": "Small Cup", "points": 126}, {"no": 117, "name": "Choco Cheese", "category": "Cheese Series", "size": "Large Cup", "points": 194}, {"no": 118, "name": "Choco Cheese", "category": "Cheese Series", "size": "Small Bottle", "points": 199}, {"no": 119, "name": "Choco Cheese", "category": "Cheese Series", "size": "Large Bottle", "points": 400}, {"no": 120, "name": "Choco Cheese", "category": "Cheese Series", "size": "Extra Large Bottle", "points": 784}, {"no": 121, "name": "Original Matcha", "category": "Non Cheese Series", "size": "Small Cup", "points": 113}, {"no": 122, "name": "Original Matcha", "category": "Non Cheese Series", "size": "Large Cup", "points": 184}, {"no": 123, "name": "Original Matcha", "category": "Non Cheese Series", "size": "Small Bottle", "points": 188}, {"no": 124, "name": "Original Matcha", "category": "Non Cheese Series", "size": "Large Bottle", "points": 378}, {"no": 125, "name": "Original Matcha", "category": "Non Cheese Series", "size": "Extra Large Bottle", "points": 741}, {"no": 126, "name": "Taro", "category": "Non Cheese Series", "size": "Small Cup", "points": 84}, {"no": 127, "name": "Taro", "category": "Non Cheese Series", "size": "Large Cup", "points": 132}, {"no": 128, "name": "Taro", "category": "Non Cheese Series", "size": "Small Bottle", "points": 137}, {"no": 129, "name": "Taro", "category": "Non Cheese Series", "size": "Large Bottle", "points": 276}, {"no": 130, "name": "Taro", "category": "Non Cheese Series", "size": "Extra Large Bottle", "points": 536}, {"no": 131, "name": "Red Velvet", "category": "Non Cheese Series", "size": "Small Cup", "points": 86}, {"no": 132, "name": "Red Velvet", "category": "Non Cheese Series", "size": "Large Cup", "points": 137}, {"no": 133, "name": "Red Velvet", "category": "Non Cheese Series", "size": "Small Bottle", "points": 142}, {"no": 134, "name": "Red Velvet", "category": "Non Cheese Series", "size": "Large Bottle", "points": 286}, {"no": 135, "name": "Red Velvet", "category": "Non Cheese Series", "size": "Extra Large Bottle", "points": 555}, {"no": 136, "name": "Cookies & Cream", "category": "Non Cheese Series", "size": "Small Cup", "points": 84}, {"no": 137, "name": "Cookies & Cream", "category": "Non Cheese Series", "size": "Large Cup", "points": 132}, {"no": 138, "name": "Cookies & Cream", "category": "Non Cheese Series", "size": "Small Bottle", "points": 137}, {"no": 139, "name": "Cookies & Cream", "category": "Non Cheese Series", "size": "Large Bottle", "points": 276}, {"no": 140, "name": "Cookies & Cream", "category": "Non Cheese Series", "size": "Extra Large Bottle", "points": 536}, {"no": 141, "name": "Bubble Gum", "category": "Non Cheese Series", "size": "Small Cup", "points": 82}, {"no": 142, "name": "Bubble Gum", "category": "Non Cheese Series", "size": "Large Cup", "points": 129}, {"no": 143, "name": "Bubble Gum", "category": "Non Cheese Series", "size": "Small Bottle", "points": 134}, {"no": 144, "name": "Bubble Gum", "category": "Non Cheese Series", "size": "Large Bottle", "points": 269}, {"no": 145, "name": "Bubble Gum", "category": "Non Cheese Series", "size": "Extra Large Bottle", "points": 521}, {"no": 146, "name": "Palm Milk", "category": "Non Cheese Series", "size": "Small Cup", "points": 101}, {"no": 147, "name": "Palm Milk", "category": "Non Cheese Series", "size": "Large Cup", "points": 166}, {"no": 148, "name": "Palm Milk", "category": "Non Cheese Series", "size": "Small Bottle", "points": 171}, {"no": 149, "name": "Palm Milk", "category": "Non Cheese Series", "size": "Large Bottle", "points": 344}, {"no": 150, "name": "Palm Milk", "category": "Non Cheese Series", "size": "Extra Large Bottle", "points": 672}, {"no": 151, "name": "Dalgona Palm Milk", "category": "Non Cheese Series", "size": "Small Cup", "points": 125}, {"no": 152, "name": "Dalgona Palm Milk", "category": "Non Cheese Series", "size": "Large Cup", "points": 195}, {"no": 153, "name": "Dalgona Palm Milk", "category": "Non Cheese Series", "size": "Small Bottle", "points": 200}, {"no": 154, "name": "Dalgona Palm Milk", "category": "Non Cheese Series", "size": "Large Bottle", "points": 401}, {"no": 155, "name": "Dalgona Palm Milk", "category": "Non Cheese Series", "size": "Extra Large Bottle", "points": 785}, {"no": 156, "name": "Choco", "category": "Non Cheese Series", "size": "Small Cup", "points": 100}, {"no": 157, "name": "Choco", "category": "Non Cheese Series", "size": "Large Cup", "points": 161}, {"no": 158, "name": "Choco", "category": "Non Cheese Series", "size": "Small Bottle", "points": 166}, {"no": 159, "name": "Choco", "category": "Non Cheese Series", "size": "Large Bottle", "points": 333}, {"no": 160, "name": "Choco", "category": "Non Cheese Series", "size": "Extra Large Bottle", "points": 651}], "categories": ["Sea Salt Latte Series", "Latte Series", "Double Cheese Series", "Cheese Series", "Non Cheese Series"]};
 
 let DATA = {customers:[],menu:[],categories:[]};
@@ -7,32 +9,53 @@ let selectedCustomer = null;
 let selectedReward = null;
 let toastTimer = null;
 
-document.addEventListener("DOMContentLoaded",()=>{document.getElementById("year").textContent=new Date().getFullYear();if(LIVE_MODE&&API_URL)loadLiveData();else{DATA=normalizeData(STATIC_DATA);renderApp();}});
+document.addEventListener("DOMContentLoaded",()=>{
+  document.getElementById("year").textContent=new Date().getFullYear();
+  if(LIVE_MODE && API_URL) {
+    loadLiveData();
+  } else {
+    DATA=normalizeData(STATIC_DATA);
+    renderApp();
+  }
+});
 
 function normalizeData(raw){
   const menu=(raw.menu||[]).map(m=>({...m,points:Number(m.points)||0,category:String(m.category||"").trim()}));
   const categories=[...new Set((raw.categories||[]).concat(menu.map(m=>m.category)).filter(Boolean))];
   return {customers:(raw.customers||[]).map(c=>({...c,points:Number(c.points)||0})),menu,categories};
 }
+
+// INI FUNGSI PENTING YANG TERHAPUS (UNTUK MENGUBAH TEKS STATUS)
+function setStatus(t) {
+  document.getElementById("status-label").textContent = t;
+}
+
+// INI FUNGSI PENTING YANG TERHAPUS (UNTUK MEMUAT TAMPILAN WEB)
+function renderApp(){
+  document.getElementById("customer-count").textContent = DATA.customers.length;
+  document.getElementById("menu-count").textContent = DATA.menu.length;
+  renderTop3();
+  populateCustomers();
+  populateFilters();
+  renderMenu();
+  bindEvents();
+}
+
 function loadLiveData() {
   setStatus("Memuat...");
   
-  // Menggunakan Fetch API yang lebih modern
   fetch(API_URL)
     .then(response => {
-      // Memastikan Apps Script mengembalikan status 200 OK
       if (!response.ok) throw new Error("Gagal terhubung ke server.");
       return response.text();
     })
     .then(text => {
       try {
-        // Coba jadikan JSON
         const payload = JSON.parse(text);
         DATA = normalizeData(payload);
         renderApp();
         setStatus("Live");
       } catch (e) {
-        // Jika gagal di-parse, berarti Apps Script mengirim pesan error (bukan data)
         console.error("Response dari Apps Script:", text);
         throw new Error("Data dari server tidak berformat JSON.");
       }
@@ -47,16 +70,20 @@ function fallbackToStatic(msg) {
   DATA = normalizeData(STATIC_DATA);
   renderApp();
   setStatus("Demo");
-  showToast(msg); // Ini akan memunculkan popup hitam berisi pesan error aslinya
+  showToast(msg);
 }
+
 function renderTop3(){
   const top=[...DATA.customers].sort((a,b)=>b.points-a.points).slice(0,3), medals=["🥇","🥈","🥉"], widths=[100,86,76];
   document.getElementById("leaderboard").innerHTML=top.map((c,i)=>`<article class="rank-card"><span class="rank-number">0${i+1}</span><span class="rank-medal">${medals[i]}</span><div class="rank-name">${escapeHtml(c.name)}</div><div class="rank-points"><b>${formatPoints(c.points)}</b> point</div><div class="rank-bar" style="--width:${widths[i]}%"></div></article>`).join("");
 }
+
 function populateCustomers(){
   document.getElementById("customer-list").innerHTML=[...DATA.customers].sort((a,b)=>a.name.localeCompare(b.name,"id")).map(c=>`<option value="${escapeAttr(c.name)}">${formatPoints(c.points)} point</option>`).join("");
 }
+
 function optionList(values,allLabel){return `<option value="">${allLabel}</option>`+values.map(v=>`<option value="${escapeAttr(v)}">${escapeHtml(v)}</option>`).join("");}
+
 function populateFilters(){
   const cats=DATA.categories.sort((a,b)=>a.localeCompare(b,"id"));
   document.getElementById("category-filter").innerHTML=optionList(cats,"Semua kategori");
@@ -65,12 +92,14 @@ function populateFilters(){
   const sizes=[...new Set(DATA.menu.map(m=>m.size))].sort((a,b)=>a.localeCompare(b,"id"));
   document.getElementById("size-filter").innerHTML=optionList(sizes,"Semua ukuran");
 }
+
 function renderMenu(){
   const q=document.getElementById("menu-search").value.trim().toLowerCase(),size=document.getElementById("size-filter").value,cat=document.getElementById("all-category").value;
   const items=DATA.menu.filter(m=>(!q||m.name.toLowerCase().includes(q))&&(!size||m.size===size)&&(!cat||m.category===cat));
   document.getElementById("menu-grid").innerHTML=items.map(menuCard).join("");
   document.getElementById("menu-empty").classList.toggle("hidden",items.length!==0);bindRewardClicks(document.getElementById("menu-grid"));
 }
+
 function renderAffordable(){
   if(!selectedCustomer)return;
   const cat=document.getElementById("result-category").value;
@@ -79,6 +108,7 @@ function renderAffordable(){
   document.getElementById("affordable-empty").classList.toggle("hidden",items.length!==0);
   bindRewardClicks(document.getElementById("affordable-grid"));
 }
+
 function renderResult(customer){
   selectedCustomer=customer;selectedReward=null;
   document.getElementById("result-section").classList.remove("hidden");
@@ -90,22 +120,28 @@ function renderResult(customer){
   renderAffordable();updateWhatsApp();
   document.getElementById("result-section").scrollIntoView({behavior:"smooth",block:"start"});
 }
+
 function menuCard(m){
   return `<article class="reward-card" data-menu="${escapeAttr(m.name)}" data-size="${escapeAttr(m.size)}" data-category="${escapeAttr(m.category)}" data-points="${m.points}"><div><div class="reward-icon">☕</div><h4>${escapeHtml(m.name)}</h4><div class="size">${escapeHtml(m.size)}</div><span class="category">${escapeHtml(m.category)}</span></div><div class="reward-price">${formatPoints(m.points)} point</div></article>`;
 }
+
 function bindRewardClicks(root){
   root.querySelectorAll(".reward-card").forEach(card=>card.onclick=()=>{
     selectedReward={name:card.dataset.menu,size:card.dataset.size,category:card.dataset.category,points:Number(card.dataset.points)};
     updateWhatsApp();showToast(`${selectedReward.name} dipilih untuk penukaran.`);document.getElementById("tukarkan").scrollIntoView({behavior:"smooth"});
   });
 }
+
 function findCustomer(v){const q=v.trim().toLowerCase();if(!q)return null;return DATA.customers.find(c=>c.name.toLowerCase()===q)||DATA.customers.find(c=>c.name.toLowerCase().includes(q));}
+
 function checkCustomer(){const c=findCustomer(document.getElementById("customer-search").value);if(!c){showToast("Nama pelanggan belum ditemukan.");return;}renderResult(c);}
+
 function updateWhatsApp(){
   let text=selectedCustomer?`Halo Racikan Rindu, saya ${selectedCustomer.name} memiliki ${selectedCustomer.points} poin.`:"Halo Racikan Rindu, saya ingin menukarkan poin.";
   if(selectedReward)text+=` Saya ingin menukarkan ${selectedReward.name} — ${selectedReward.size}, kategori ${selectedReward.category} (${selectedReward.points} poin).`;else text+=" Mohon dibantu untuk proses penukarannya.";
   document.getElementById("wa-btn").href="https://wa.me/6283895742866?text="+encodeURIComponent(text);
 }
+
 function bindEvents(){
   document.getElementById("check-btn").onclick=checkCustomer;
   document.getElementById("customer-search").onkeydown=e=>{if(e.key==="Enter")checkCustomer();};
@@ -116,6 +152,7 @@ function bindEvents(){
   document.getElementById("size-filter").onchange=renderMenu;
   document.getElementById("all-category").onchange=renderMenu;
 }
+
 function formatPoints(n){return new Intl.NumberFormat("id-ID").format(Number(n)||0);}
 function escapeHtml(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[c]));}
 function escapeAttr(s){return escapeHtml(s);}
